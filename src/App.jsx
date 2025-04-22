@@ -23,14 +23,14 @@ export default function App() {
   };
 
   const resetFeedback = () => {
-    const initialState = { good: 0, neutral: 0, bad: 0 };
-    setFeedback(initialState);
-    localStorage.setItem("feedback", JSON.stringify(initialState));
+    setFeedback({ good: 0, neutral: 0, bad: 0 });
   };
 
   const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
-  const positiveFeedback = totalFeedback
-    ? Math.round(((feedback.good + feedback.neutral) / totalFeedback) * 100)
+  const ratedFeedback = feedback.good + feedback.bad;
+
+  const positiveFeedback = ratedFeedback
+    ? Math.round((feedback.good / ratedFeedback) * 100)
     : 0;
 
   return (
